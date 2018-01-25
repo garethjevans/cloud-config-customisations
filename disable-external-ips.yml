@@ -1,24 +1,42 @@
 ---
 - type: replace
-  path: /networks/name=default/subnets/az=z1/cloud_properties/ephemeral_external_ip
-  value: false
+  path: /networks/name=default
+  value: 
+  - name: default
+    type: manual
+    subnets:
+    - range: 10.0.0.0/16
+      reserved: [10.0.0.1-10.0.0.9]
+      gateway: 10.0.0.1
+      azs:
+      - z1
+      - z2
+      - z3
+      dns: [8.8.8.8, 8.8.4.4]
+      cloud_properties:
+        ephemeral_external_ip: false
+        network_name: ((network_name))
+        subnetwork_name: ((subnetwork_name))
+        tags: 
+        - ((internal_tag_name))
 
 - type: replace
-  path: /networks/name=default/subnets/az=z2/cloud_properties/ephemeral_external_ip
-  value: false
-
-- type: replace
-  path: /networks/name=default/subnets/az=z3/cloud_properties/ephemeral_external_ip
-  value: false
-
-- type: replace
-  path: /networks/name=private/subnets/az=z1/cloud_properties/ephemeral_external_ip
-  value: false
-
-- type: replace
-  path: /networks/name=private/subnets/az=z2/cloud_properties/ephemeral_external_ip
-  value: false
-
-- type: replace
-  path: /networks/name=private/subnets/az=z3/cloud_properties/ephemeral_external_ip
-  value: false
+  path: /networks/name=private
+  value: 
+  - name: private
+    type: manual
+    subnets:
+    - range: 10.0.0.0/16
+      reserved: [10.0.0.1-10.0.0.9]
+      gateway: 10.0.0.1
+      azs:
+      - z1
+      - z2
+      - z3
+      dns: [8.8.8.8, 8.8.4.4]
+      cloud_properties:
+        ephemeral_external_ip: false
+        network_name: ((network_name))
+        subnetwork_name: ((subnetwork_name))
+        tags: 
+        - ((internal_tag_name))
