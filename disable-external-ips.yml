@@ -19,6 +19,7 @@
         subnetwork_name: ((subnetwork_name))
         tags: 
         - ((internal_tag_name))
+        - no-ip
 
 - type: replace
   path: /networks/name=private
@@ -40,3 +41,4 @@
         subnetwork_name: ((subnetwork_name))
         tags: 
         - ((internal_tag_name))
+        - no-ip
